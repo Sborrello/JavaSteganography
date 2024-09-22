@@ -38,7 +38,7 @@ public class Main {
                     System.out.print("Enter the text you want to embed: ");
                     String secretText = scanner.nextLine();
 
-                    // Embed the secret text into the cover image
+                    // Embed the text into the cover image
                     BufferedImage embeddedImageWithText = embedText(coverImage, secretText);
                     saveImage(embeddedImageWithText, "coverWithText.png");
                     System.out.println("Secret text embedded successfully!");
@@ -56,7 +56,7 @@ public class Main {
         }
     }
 
-    // Embed secret image into cover image
+    // Embed image into cover image
     public static BufferedImage embedImage(BufferedImage coverImage, BufferedImage secretImage) {
         int coverWidth = coverImage.getWidth();
         int coverHeight = coverImage.getHeight();
@@ -66,15 +66,15 @@ public class Main {
         int totalPixelsSecret = secretWidth * secretHeight;
         int totalPixelsCover = coverWidth * coverHeight;
 
-        // Each pixel requires 32 bits (4 bytes), so cover image must be large enough
+        // Each pixel requires 32 bits so cover image must be large enough
         if (totalPixelsCover < totalPixelsSecret * 32) {
-            throw new IllegalArgumentException("Cover image is too small to embed the secret image.");
+            throw new IllegalArgumentException("Cover image is too small to embed the image.");
         }
 
-        int[] secretRGBArray = new int[totalPixelsSecret]; // RGB values from the secret image
+        int[] secretRGBArray = new int[totalPixelsSecret]; // RGB values from the image
         int pixelIndex = 0;
 
-        // Extract RGB values from the secret image into an array
+        // Extract RGB values 
         for (int y = 0; y < secretHeight; y++) {
             for (int x = 0; x < secretWidth; x++) {
                 secretRGBArray[pixelIndex++] = secretImage.getRGB(x, y);
